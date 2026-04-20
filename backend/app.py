@@ -3,7 +3,7 @@ from flask_cors import CORS
 import sqlite3
 
 app = Flask(__name__, static_folder="../frontend", static_url_path="")
-CORS(app)
+CORS(app, resources={r"/*": {"origins": ["https://interviewvault-sigma.vercel.app"]}})
 
 def get_db():
     conn = sqlite3.connect("interview_platform.db")

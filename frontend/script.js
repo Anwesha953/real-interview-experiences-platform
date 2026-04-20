@@ -84,7 +84,7 @@ experienceForm.addEventListener("submit", async (e) => {
   formMessage.style.color = "#0f6a4f";
 
   try {
-    const response = await fetch("/add", {
+    const response = await fetch("https://Anwesha2005.pythonanywhere.com/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
