@@ -65,9 +65,54 @@ clearFiltersBtn.addEventListener("click", () => {
   feedGrid.classList.remove("hidden");
 });
 
-experienceForm.addEventListener("submit", () => {
+experienceForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const company = document.getElementById("companyName").value.trim();
+  const role = document.getElementById("roleName").value.trim();
+  const question1 = document.getElementById("questionText").value.trim();
+  const answer = document.getElementById("answerText").value.trim();
+  const reaction = document.getElementById("reactionText").value.trim();
+
+  if (!company || !role || !question1 || !answer || !reaction) {
+    formMessage.textContent = "Please fill all required fields.";
+    formMessage.style.color = "red";
+    return;
+  }
+
   formMessage.textContent = "Submitting experience...";
   formMessage.style.color = "#0f6a4f";
+
+  try {
+    const response = await fetch("/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        company,
+        role,
+        question1,
+        answer,
+        reaction
+      })
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      formMessage.textContent = "Post added successfully!";
+      formMessage.style.color = "#0f6a4f";
+      experienceForm.reset();
+    } else {
+      formMessage.textContent = "Failed to submit.";
+      formMessage.style.color = "red";
+    }
+
+  } catch (error) {
+    formMessage.textContent = "Backend connection failed.";
+    formMessage.style.color = "red";
+  }
 });
 
 scrollToFormBtn.addEventListener("click", () => {
