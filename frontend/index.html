@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real Interview Experiences</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-main">Real Interview Experiences</span>
+        <span class="brand-sub">(Anonymous)</span>
+      </div>
+
+      <div class="topbar-right">
+        <div class="top-stat">
+          <span class="stat-number" id="totalPosts">24</span>
+          <span class="stat-label">posts</span>
+        </div>
+        <div class="profile-icon">👤</div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="left-panel">
+        <div class="hero card soft-card">
+          <div class="hero-badge">Built for students & job seekers</div>
+          <h1>
+            Real Interview Experiences
+            <span>(Anonymous)</span>
+          </h1>
+          <p>
+            Learn from real-world interview stories, actual questions, candidate
+            responses, and interviewer reactions — all in one place.
+          </p>
+
+          <div class="hero-actions">
+            <button class="primary-btn" id="scrollToFormBtn">Submit Your Experience +</button>
+          </div>
+
+          <div class="hero-stats">
+            <div class="mini-stat">
+              <strong>12</strong>
+              <span>Companies</span>
+            </div>
+            <div class="mini-stat">
+              <strong>9</strong>
+              <span>Roles</span>
+            </div>
+            <div class="mini-stat">
+              <strong>100%</strong>
+              <span>Anonymous</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="left-grid">
+          <aside class="filters card">
+            <div class="section-head">
+              <h2>Filter Experiences</h2>
+              <p>Explore by company or role</p>
+            </div>
+
+            <div class="form-group">
+              <label for="companyFilter">Company Name</label>
+              <div class="input-wrap">
+                <span class="input-icon">⌕</span>
+                <input type="text" id="companyFilter" placeholder="e.g., Google" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="roleFilter">Role / Position</label>
+              <div class="input-wrap">
+                <span class="input-icon">⌕</span>
+                <input type="text" id="roleFilter" placeholder="e.g., Software Engineer" />
+              </div>
+            </div>
+
+            <button class="filter-btn" id="applyFiltersBtn">Apply Filters</button>
+            <button class="clear-btn" id="clearFiltersBtn">Clear</button>
+          </aside>
+
+          <div class="featured card">
+            <div class="section-head">
+              <h2>Highlighted Experience</h2>
+              <p>A quick example of what users can learn</p>
+            </div>
+
+            <div class="featured-card">
+              <div class="featured-top">
+                <div class="company-box google">G</div>
+                <div>
+                  <h3>Google</h3>
+                  <span>Software Engineer Intern</span>
+                </div>
+                <small>2 hours ago</small>
+              </div>
+
+              <div class="featured-body">
+                <div class="content-block">
+                  <h4>Interview Question</h4>
+                  <p>
+                    What is the key interview element for culture-fit success?
+                  </p>
+                </div>
+
+                <div class="content-block">
+                  <h4>Your Answer</h4>
+                  <p>
+                    I focused on clarity, ownership, and collaboration, and used
+                    a real example from a team project instead of giving a generic answer.
+                  </p>
+                </div>
+
+                <div class="content-block">
+                  <h4>Interviewer Reaction</h4>
+                  <p>
+                    Positive. The interviewer asked one follow-up and seemed satisfied
+                    with the practical example.
+                  </p>
+                </div>
+              </div>
+
+              <div class="featured-footer">
+                <span class="tag">Culture Fit</span>
+                <span class="tag">Internship</span>
+                <span class="tag">Level L4</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="right-panel">
+        <div class="submit-card card dark-surface" id="submissionSection">
+          <div class="submit-inner">
+            <div class="section-head light">
+              <h2>Add Interview Experience</h2>
+              <p>Share anonymously. Avoid personal names or confidential details.</p>
+            </div>
+
+            <form id="experienceForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="companyName">Company Name</label>
+                  <input type="text" id="companyName" placeholder="Company Name" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="roleName">Role</label>
+                  <input type="text" id="roleName" placeholder="Role" required />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="questionText">Interview Question</label>
+                  <textarea id="questionText" placeholder="What question were you asked?" required></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="answerText">Your Answer</label>
+                  <textarea id="answerText" placeholder="What answer did you give?" required></textarea>
+                </div>
+              </div>
+
+              <div class="form-row single">
+                <div class="form-group">
+                  <label for="reactionText">Interviewer Reaction</label>
+                  <textarea id="reactionText" placeholder="How did the interviewer react?" required></textarea>
+                </div>
+              </div>
+
+              <div class="form-row meta-row">
+                <div class="form-group">
+                  <label for="topicTag">Topic Tag</label>
+                  <input type="text" id="topicTag" placeholder="e.g., DSA, HR, Projects" />
+                </div>
+
+                <div class="form-group">
+                  <label for="levelTag">Level</label>
+                  <input type="text" id="levelTag" placeholder="e.g., Intern, Fresher, L4" />
+                </div>
+              </div>
+
+              <button type="submit" class="primary-btn submit-btn">Submit Experience</button>
+              <p class="form-message" id="formMessage"></p>
+            </form>
+          </div>
+        </div>
+
+        <div class="feed-wrapper">
+          <div class="feed-head">
+            <div>
+              <h2>Browse Experiences</h2>
+              <p>See recent interview stories from the community</p>
+            </div>
+          </div>
+
+          <div class="feed-grid" id="feedGrid">
+
+  <div class="experience-card" data-company="Amazon" data-role="SDE Intern">
+    <div class="card-top">
+      <div class="company-logo text-logo">Amazon</div>
+      <div class="card-title">
+        <h3>Amazon</h3>
+        <span>SDE Intern</span>
+      </div>
+      <div class="card-time">recent</div>
+    </div>
+
+    <div class="card-section">
+      <h4>Interview Question</h4>
+      <p>Tell me about a time you handled conflict in a team and what you did to resolve it.</p>
+    </div>
+
+    <div class="card-section">
+      <h4>Your Answer</h4>
+      <p>I explained the situation using STAR format, focused on my specific actions, and showed how the team aligned after the conflict.</p>
+    </div>
+
+    <div class="card-section">
+      <h4>Interviewer Reaction</h4>
+      <p>The interviewer asked follow-up questions to understand ownership, decision-making, and impact more deeply.</p>
+    </div>
+
+    <div class="card-meta">
+      <span class="tag">Behavioral</span>
+      <span class="tag">Leadership</span>
+    </div>
+
+    <div class="card-footer">
+      <span>Posted anonymously</span>
+      <div class="footer-user">
+        <div class="user-dot">👤</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="experience-card" data-company="Google" data-role="Software Engineer">
+    <div class="card-top">
+      <div class="company-logo text-logo">Google</div>
+      <div class="card-title">
+        <h3>Google</h3>
+        <span>Software Engineer</span>
+      </div>
+      <div class="card-time">recent</div>
+    </div>
+
+    <div class="card-section">
+      <h4>Interview Question</h4>
+      <p>Walk me through one of your projects and justify the design choices you made.</p>
+    </div>
+
+    <div class="card-section">
+      <h4>Your Answer</h4>
+      <p>I explained the project architecture, the trade-offs I considered, and why I chose that implementation over simpler alternatives.</p>
+    </div>
+
+    <div class="card-section">
+      <h4>Interviewer Reaction</h4>
+      <p>The interviewer focused on my reasoning, asked clarifying questions, and checked whether I understood the deeper technical decisions.</p>
+    </div>
+
+    <div class="card-meta">
+      <span class="tag">Projects</span>
+      <span class="tag">Design Thinking</span>
+    </div>
+
+    <div class="card-footer">
+      <span>Posted anonymously</span>
+      <div class="footer-user">
+        <div class="user-dot">👤</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+          <div class="empty-state hidden" id="emptyState">
+            <h3>No experiences matched your filters</h3>
+            <p>Try another company or role, or be the first to share one.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

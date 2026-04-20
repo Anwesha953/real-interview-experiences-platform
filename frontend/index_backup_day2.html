@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interview Experience Platform</title>
+</head>
+<body>
+    <h1>Interview Experience Platform</h1>
+
+    <h2>Add Interview Experience</h2>
+
+    <input id="company" placeholder="Company Name"><br><br>
+    <input id="role" placeholder="Role"><br><br>
+    <textarea id="question" placeholder="Interview Question"></textarea><br><br>
+    <textarea id="answer" placeholder="Your Answer"></textarea><br><br>
+    <textarea id="reaction" placeholder="Interviewer Reaction"></textarea><br><br>
+
+    <button onclick="submitData()">Submit</button>
+
+    <hr>
+
+    <h2>All Posts</h2>
+    <div id="posts"></div>
+
+    <script>
+        function submitData() {
+            fetch("http://127.0.0.1:5000/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    company: document.getElementById("company").value,
+                    role: document.getElementById("role").value,
+                    question1: document.getElementById("question").value,
+                    answer: document.getElementById("answer").value,
+                    reaction: document.getElementById("reaction").value
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                loadPosts();
+            });
+        }
+
+        function loadPosts() {
+            fetch("http://127.0.0.1:5000/posts")
+            .then(response => response.json())
+            .then(data => {
+                let output = "";
+
+                data.forEach(post => {
+                    output += `
+                        <div>
+                            <h3>${post[0]} - ${post[1]}</h3>
+                            <p><b>Question:</b> ${post[2]}</p>
+                            <p><b>Answer:</b> ${post[3]}</p>
+                            <p><b>Reaction:</b> ${post[4]}</p>
+                            <hr>
+                        </div>
+                    `;
+                });
+
+                document.getElementById("posts").innerHTML = output;
+            });
+        }
+
+        loadPosts();
+    </script>
+</body>
+</html>
