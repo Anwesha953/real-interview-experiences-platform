@@ -15,32 +15,33 @@
       </div>
 
       <div class="topbar-right">
-        <div class="top-stat">
-          <span class="stat-number" id="totalPosts">24</span>
-          <span class="stat-label">posts</span>
-        </div>
-        <div class="profile-icon">👤</div>
-      </div>
+  <button class="mode-toggle" id="modeToggle" type="button">🌙 Dark</button>
+
+  <div class="top-stat">
+    <span class="stat-number" id="totalPosts">24</span>
+    <span class="stat-label">posts</span>
+  </div>
+
+  <div class="profile-icon">👤</div>
+</div>
     </header>
 
     <main class="layout">
       <section class="left-panel">
         <div class="hero card soft-card">
           <div class="hero-badge">Built for students & job seekers</div>
-          <h1>
-            Real Interview Experiences
-            <span>(Anonymous)</span>
-          </h1>
-          <p>
-            Learn from real-world interview stories, actual questions, candidate
-            responses, and interviewer reactions — all in one place.
-          </p>
+<h1>
+  Real Interview Experiences
+  <span>(Anonymous)</span>
+</h1>
+<p class="hero-text">Explore real interview questions, candidate answers, and interviewer reactions - all shared anonymously to help you prepare smarter.</p>
 
-          <div class="hero-actions">
-            <button class="primary-btn" id="scrollToFormBtn">Submit Your Experience +</button>
-          </div>
+<div class="hero-actions">
+  <button class="primary-btn" id="scrollToFormBtn">Submit Your Experience +</button>
+</div>
 
-          <div class="hero-stats">
+<div class="hero-stats">
+
             <div class="mini-stat">
               <strong>12</strong>
               <span>Companies</span>
@@ -64,20 +65,22 @@
             </div>
 
             <div class="form-group">
-              <label for="companyFilter">Company Name</label>
-              <div class="input-wrap">
-                <span class="input-icon">⌕</span>
-                <input type="text" id="companyFilter" placeholder="e.g., Google" />
-              </div>
-            </div>
+  <label for="companyFilter">Company Name</label>
+  <div class="select-wrap">
+    <select id="companyFilter">
+      <option value="all">All Companies</option>
+    </select>
+  </div>
+</div>
 
-            <div class="form-group">
-              <label for="roleFilter">Role / Position</label>
-              <div class="input-wrap">
-                <span class="input-icon">⌕</span>
-                <input type="text" id="roleFilter" placeholder="e.g., Software Engineer" />
-              </div>
-            </div>
+<div class="form-group">
+  <label for="roleFilter">Role / Position</label>
+  <div class="select-wrap">
+    <select id="roleFilter">
+      <option value="all">All Roles</option>
+    </select>
+  </div>
+</div>
 
             <button class="filter-btn" id="applyFiltersBtn">Apply Filters</button>
             <button class="clear-btn" id="clearFiltersBtn">Clear</button>
@@ -139,38 +142,38 @@
           <div class="submit-inner">
             <div class="section-head light">
               <h2>Add Interview Experience</h2>
-              <p>Share anonymously. Avoid personal names or confidential details.</p>
+              <p class="form-note">(Share anonymously. Avoid personal names or confidential details.)</p>
             </div>
 
             <form id="experienceForm">
               <div class="form-row">
                 <div class="form-group">
-                  <label for="companyName">Company Name</label>
-                  <input type="text" id="companyName" placeholder="Company Name" required />
+                  <label for="companyName">Company Name <span class="required-star">*</span></label>
+                  <input type="text" id="companyName" placeholder="e.g., Google, Amazon, TCS" required />
                 </div>
 
                 <div class="form-group">
-                  <label for="roleName">Role</label>
-                  <input type="text" id="roleName" placeholder="Role" required />
+                  <label for="roleName">Role <span class="required-star">*</span></label>
+                  <input type="text" id="roleName" placeholder="e.g., SDE Intern, Analyst, Product Intern" required />
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group">
-                  <label for="questionText">Interview Question</label>
+                  <label for="questionText">Interview Question <span class="required-star">*</span></label>
                   <textarea id="questionText" placeholder="What question were you asked?" required></textarea>
                 </div>
 
                 <div class="form-group">
                   <label for="answerText">Your Answer</label>
-                  <textarea id="answerText" placeholder="What answer did you give?" required></textarea>
+                  <textarea id="answerText" placeholder="What answer did you give?"></textarea>
                 </div>
               </div>
 
               <div class="form-row single">
                 <div class="form-group">
                   <label for="reactionText">Interviewer Reaction</label>
-                  <textarea id="reactionText" placeholder="How did the interviewer react?" required></textarea>
+                  <textarea id="reactionText" placeholder="How did the interviewer react?"></textarea>
                 </div>
               </div>
 

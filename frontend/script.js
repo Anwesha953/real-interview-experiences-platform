@@ -9,6 +9,7 @@ const experienceForm = document.getElementById("experienceForm");
 const formMessage = document.getElementById("formMessage");
 const scrollToFormBtn = document.getElementById("scrollToFormBtn");
 const submissionSection = document.getElementById("submissionSection");
+const modeToggle = document.getElementById("modeToggle");
 
 function getExperienceCards() {
   return Array.from(document.querySelectorAll(".experience-card"));
@@ -17,6 +18,30 @@ function getExperienceCards() {
 function updatePostCount() {
   const cards = getExperienceCards();
   totalPosts.textContent = cards.length;
+}
+
+function populateDropdowns() {
+  const cards = getExperienceCards();
+
+  const companies = [...new Set(cards.map(card => card.dataset.company).filter(Boolean))].sort();
+  const roles = [...new Set(cards.map(card => card.dataset.role).filter(Boolean))].sort();
+
+  companyFilter.innerHTML = `<option value="all">All Companies</option>`;
+  roleFilter.innerHTML = `<option value="all">All Roles</option>`;
+
+  companies.forEach(company => {
+    const option = document.createElement("option");
+    option.value = company.toLowerCase();
+    option.textContent = company;
+    companyFilter.appendChild(option);
+  });
+
+  roles.forEach(role => {
+    const option = document.createElement("option");
+    option.value = role.toLowerCase();
+    option.textContent = role;
+    roleFilter.appendChild(option);
+  });
 }
 
 function applyFilters() {
@@ -30,8 +55,8 @@ function applyFilters() {
     const company = (card.dataset.company || "").toLowerCase();
     const role = (card.dataset.role || "").toLowerCase();
 
-    const matchesCompany = company.includes(companyValue);
-    const matchesRole = role.includes(roleValue);
+    const matchesCompany = companyValue === "all" || company === companyValue;
+    const matchesRole = roleValue === "all" || role === roleValue;
 
     if (matchesCompany && matchesRole) {
       card.style.display = "flex";
@@ -53,8 +78,8 @@ function applyFilters() {
 applyFiltersBtn.addEventListener("click", applyFilters);
 
 clearFiltersBtn.addEventListener("click", () => {
-  companyFilter.value = "";
-  roleFilter.value = "";
+  companyFilter.value = "all";
+  roleFilter.value = "all";
 
   const cards = getExperienceCards();
   cards.forEach((card) => {
@@ -74,8 +99,8 @@ experienceForm.addEventListener("submit", async (e) => {
   const answer = document.getElementById("answerText").value.trim();
   const reaction = document.getElementById("reactionText").value.trim();
 
-  if (!company || !role || !question1 || !answer || !reaction) {
-    formMessage.textContent = "Please fill all required fields.";
+  if (!company || !role || !question1) {
+    formMessage.textContent = "Please fill all required fields marked with *.";
     formMessage.style.color = "red";
     return;
   }
@@ -108,7 +133,6 @@ experienceForm.addEventListener("submit", async (e) => {
       formMessage.textContent = "Failed to submit.";
       formMessage.style.color = "red";
     }
-
   } catch (error) {
     formMessage.textContent = "Backend connection failed.";
     formMessage.style.color = "red";
@@ -122,4 +146,30 @@ scrollToFormBtn.addEventListener("click", () => {
   });
 });
 
+function applySavedTheme() {
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    modeToggle.textContent = "☀️ Light";
+  } else {
+    document.body.classList.remove("dark-mode");
+    modeToggle.textContent = "🌙 Dark";
+  }
+}
+
+modeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("theme", "dark");
+    modeToggle.textContent = "☀️ Light";
+  } else {
+    localStorage.setItem("theme", "light");
+    modeToggle.textContent = "🌙 Dark";
+  }
+});
+
+populateDropdowns();
 updatePostCount();
+applySavedTheme();
