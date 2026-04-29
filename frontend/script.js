@@ -180,7 +180,7 @@ async function loadPosts() {
 
     feedGrid.innerHTML = ""; // clear existing cards
 
-    posts..forEach(post => {
+    posts.forEach((post) => {
       const card = document.createElement("div");
       card.className = "experience-card";
       card.dataset.company = post.company;
