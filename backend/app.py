@@ -32,7 +32,7 @@ def add_post():
         INSERT INTO posts (company, role, question1, answer, reaction)
         VALUES (?, ?, ?, ?, ?)
     """, (
-        data["company"],
+        data.get("company",""),
         data["role"],
         data["question1"],
         data["answer"],

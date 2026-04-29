@@ -129,6 +129,7 @@ experienceForm.addEventListener("submit", async (e) => {
       formMessage.textContent = "Post added successfully!";
       formMessage.style.color = "#0f6a4f";
       experienceForm.reset();
+      loadPosts(); // 🔥 this refreshes UI instantly
     } else {
       formMessage.textContent = "Failed to submit.";
       formMessage.style.color = "red";
@@ -170,6 +171,61 @@ modeToggle.addEventListener("click", () => {
   }
 });
 
-populateDropdowns();
-updatePostCount();
+
+
+async function loadPosts() {
+  try {
+    const response = await fetch("https://Anwesha2005.pythonanywhere.com/posts");
+    const posts = await response.json();
+
+    feedGrid.innerHTML = ""; // clear existing cards
+
+    posts.reverse().forEach(post => {
+      const card = document.createElement("div");
+      card.className = "experience-card";
+      card.dataset.company = post.company;
+      card.dataset.role = post.role;
+
+      card.innerHTML = `
+        <div class="card-top">
+          <div class="company-logo text-logo">${post.company}</div>
+          <div class="card-title">
+            <h3>${post.company}</h3>
+            <span>${post.role}</span>
+          </div>
+          <div class="card-time">recent</div>
+        </div>
+
+        <div class="card-section">
+          <h4>Interview Question</h4>
+          <p>${post.question1}</p>
+        </div>
+
+        <div class="card-section">
+          <h4>Your Answer</h4>
+          <p>${post.answer || "—"}</p>
+        </div>
+
+        <div class="card-section">
+          <h4>Interviewer Reaction</h4>
+          <p>${post.reaction || "—"}</p>
+        </div>
+
+        <div class="card-footer">
+          <span>Posted anonymously</span>
+        </div>
+      `;
+
+      feedGrid.appendChild(card);
+    });
+
+    populateDropdowns();
+    updatePostCount();
+
+  } catch (err) {
+    console.error("Failed to load posts", err);
+  }
+}
+
+loadPosts();
 applySavedTheme();
