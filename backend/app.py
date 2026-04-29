@@ -49,7 +49,11 @@ def get_posts():
     conn = get_db()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT company, role, question1, answer, reaction FROM posts ORDER BY rowid DESC")
+    cursor.execute("""
+    SELECT rowid, company, role, question1, answer, reaction
+    FROM posts
+    ORDER BY rowid DESC
+    """)
     posts = cursor.fetchall()
 
     conn.close()

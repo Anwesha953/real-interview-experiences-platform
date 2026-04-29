@@ -193,7 +193,7 @@ async function loadPosts() {
             <h3>${post.company}</h3>
             <span>${post.role}</span>
           </div>
-          <div class="card-time">recent</div>
+          <div class="card-time">${isRecent(post.created_at) ? "recent" : ""}</div>
         </div>
 
         <div class="card-section">
@@ -225,6 +225,18 @@ async function loadPosts() {
   } catch (err) {
     console.error("Failed to load posts", err);
   }
+}
+
+function isRecent(createdAt) {
+  if (!createdAt) return false;
+
+  const postDate = new Date(createdAt);
+  const now = new Date();
+
+  const diffMs = now - postDate;
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+
+  return diffDays <= 7;
 }
 
 loadPosts();
