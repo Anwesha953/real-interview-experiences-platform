@@ -180,7 +180,7 @@ async function loadPosts() {
 
     feedGrid.innerHTML = ""; // clear existing cards
 
-    posts.reverse().forEach(post => {
+    posts..forEach(post => {
       const card = document.createElement("div");
       card.className = "experience-card";
       card.dataset.company = post.company;
@@ -229,3 +229,15 @@ async function loadPosts() {
 
 loadPosts();
 applySavedTheme();
+
+async function loadPostCount() {
+  try {
+    const response = await fetch("https://Anwesha2005.pythonanywhere.com/count");
+    const data = await response.json();
+    totalPosts.textContent = data.count;
+  } catch (error) {
+    console.error("Could not load post count", error);
+  }
+}
+
+loadPostCount();

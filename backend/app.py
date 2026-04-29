@@ -49,13 +49,25 @@ def get_posts():
     conn = get_db()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT company, role, question1, answer, reaction FROM posts")
+    cursor.execute("SELECT company, role, question1, answer, reaction FROM posts ORDER BY rowid DESC")
     posts = cursor.fetchall()
 
     conn.close()
 
     posts_list = [dict(post) for post in posts]
     return jsonify(posts_list)
+
+@app.route("/count", methods=["GET"])
+def count_posts():
+    conn = get_db()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT COUNT(*) FROM posts")
+    count = cursor.fetchone()[0]
+
+    conn.close()
+
+    return jsonify({"count": count})
 
 if __name__ == "__main__":
     app.run(debug=True)
